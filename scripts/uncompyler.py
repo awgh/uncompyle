@@ -52,7 +52,7 @@ import sys, os, getopt
 if sys.version[:3] != '2.7':
 	print >>sys.stderr, 'Error:  uncompyler requires Python 2.7.'
 	sys.exit(-1)
-from uncompyler import main, verify
+import uncompyle
 import time
 from multiprocessing import Process, Queue, cpu_count
 from Queue import Empty
@@ -162,12 +162,12 @@ if __name__ == '__main__': ## for Windows multiprocessing
         print time.strftime(timestampfmt)
     if not multi:
         try:
-            result = main(src_base, out_base, files, codes, outfile,
+            result = uncompyle.main(src_base, out_base, files, codes, outfile,
                           showasm, showast, do_verify, py, deob)
             print '# decompiled %i files: %i okay, %i failed, %i verify failed' % result
         except (KeyboardInterrupt):
             pass
-        except verify.VerifyCmpError:
+        except uncompyle.verify.VerifyCmpError:
             raise
     else:
         numproc = cpu_count()

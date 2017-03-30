@@ -7,7 +7,7 @@
 import types
 import operator
 import dis
-import uncompyle2, Scanner
+import uncompyle, Scanner
 
 BIN_OP_FUNCS = {
 'BINARY_POWER': operator.pow,
